@@ -1,0 +1,48 @@
+{% load static %}
+<nav
+  
+  class="navbar py-0 navbar-expand-lg navbar-light sticky-top"
+>
+  <a
+    href="{% url 'home' %}"
+    style="font-weight: bold"
+    class="navbar-brand text-danger"
+  >
+    Covid <span class="text-warning">Tube</span>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-danger" href="{% url 'home' %}"
+          >Youtube <i class="fa fa-download"></i> downloader</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-warning" href="{% url 'covid' %}"
+          >Wassup <i class="fa fa-envelope"></i> covid</a
+        >
+      </li>
+    </ul>
+   
+
+  </div>
+  <button
+  class="dark-mode-button top-dark-mode-button"
+  aria-label="dark mode toggle"
+>
+  <span aria-hidden="true" class="dark-toggle">
+    <span class="DTspan"></span>
+  </span>
+</button>
+</nav>

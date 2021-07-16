@@ -1,0 +1,65 @@
+<h4 class="mt-3">Covid-<span class="text-danger"> 19 The world</span> Now</h4>
+<div>
+  <div class="row">
+    <div class="col-lg-3 cart col-sm-6 relative rounded-lg">
+      {% for message in messages %}
+      <div class="alert alert-success mt-1">{{message}}</div>
+      {% endfor %}
+      <div class="card-box bg-blue relative rounded-lg">
+        <div class="inner">
+          <h3>{{globalSummary.NewConfirmed}}</h3>
+          <p>New confirmed</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer stretched-link" id="button"
+          >View More <i class="fa fa-arrow-circle-right"></i
+        ></a>
+      </div>
+    </div>
+
+    <div class="col-lg-3 cart col-sm-6 relative rounded-lg">
+      <div class="card-box bg-red relative rounded-lg">
+        <div class="inner">
+          <h3>{{globalSummary.NewDeaths}}</h3>
+          <p>New deaths</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer stretched-link" id="button"
+          >View More <i class="fa fa-arrow-circle-right"></i
+        ></a>
+      </div>
+    </div>
+    <div class="col-lg-3 cart col-sm-6 relative rounded-lg">
+      <div class="card-box bg-orange relative rounded-lg">
+        <div class="inner">
+          <h3>{{globalSummary.TotalDeaths}}</h3>
+          <p>Total deaths</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+        </div>
+        <a href="#" class="card-box-footer stretched-link" id="button"
+          >View More <i class="fa fa-arrow-circle-right"></i
+        ></a>
+      </div>
+    </div>
+    <div class="col-lg-3 cart col-sm-6 relative rounded-lg">
+      <div class="card-box bg-green relative rounded-lg">
+        <div class="inner">
+          <h3>{{globalSummary.TotalRecovered}}</h3>
+          <p>Total recovered</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-user-plus"></i>
+        </div>
+        <a href="#" class="card-box-footer" id="button"
+          >View More <i class="fa fa-arrow-circle-right"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>

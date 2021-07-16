@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+
+    <link rel="icon" href="{% static 'Untitled-1.ico' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel=" stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      /*CSS for Dark Mode Toggle
+
+      Copy and paste this code into it's own dark.css file. Keep all you dark mode
+      styles there, and make sure when you link to this sheet in your html head,
+      make it the bottom css link tag so it overrides all other styles.
+      At the bottom, that's where you start to add your dark mode styles by
+      starting starting with "body.dark-mode" and add your class you want to
+      target at the end. For example,
+
+      body.dark-mode .heading-one {}
+
+      then add your css properties like normal. That's it!
+      Scroll to the bottom to start adding your dark mode styles
+
+      */
+
+      /* note that Internet Explorer does not support css variables */
+      .dark-mode {
+        background: #06090f;
+      }
+      :root {
+        --dark: #06090f;
+        --medium: #1b1b1b;
+        --light: #2e2e2e;
+      }
+      .container {
+        background: #eeeeee;
+      }
+      nav {
+        background: white;
+      }
+      .dark-mode-button {
+        background: transparent;
+        border: none;
+        height: 40px;
+        width: 30px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .top-dark-mode-button {
+        position: absolute;
+        top: 10px;
+        right: 120px;
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        z-index: 1000;
+        -webkit-transition: 0.3s ease-in;
+        -o-transition: 0.3s ease-in;
+        transition: 0.3s ease-in;
+      }
+
+      .top-dark-mode-button .dark-toggle {
+        background: rgb(230, 230, 230);
+        border-color: rgb(230, 230, 230);
+        width: 35px;
+      }
+
+      body .top-dark-mode-button:after {
+        font-size: 12px;
+        position: absolute;
+        color: #fff;
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        right: 22px;
+        top: 10px;
+        -webkit-transition: 0.1s ease-in;
+        -o-transition: 0.1s ease-in;
+        transition: 0.1s ease-in;
+      }
+
+      body.dark-mode .top-dark-mode-button:after {
+        font-size: 12px;
+        color: var(--primary);
+        top: 12px;
+      }
+      input {
+        padding: 9px;
+      }
+      .dark-toggle {
+        margin: 0;
+        width: 30px;
+        height: 16px;
+        z-index: 20;
+        border-radius: 10px;
+        background: transparent;
+        border: 3px solid #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        z-index: 1000;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        align-items: center;
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+
+      body.dark-mode .dark-toggle {
+        background: rgb(67, 183, 255);
+        background: -o-linear-gradient(
+          left,
+          rgba(67, 183, 255, 1) 0%,
+          rgba(0, 221, 246, 1) 100%
+        );
+        background: -webkit-gradient(
+          linear,
+          left top,
+          right top,
+          from(rgba(67, 183, 255, 1)),
+          to(rgba(0, 221, 246, 1))
+        );
+        background: linear-gradient(
+          90deg,
+          rgba(67, 183, 255, 1) 0%,
+          rgba(0, 221, 246, 1) 100%
+        );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#43b7ff",endColorstr="#00ddf6",GradientType=1);
+        border: none;
+      }
+
+      .dark-toggle span {
+        height: 20px;
+        width: 20px;
+        left: -8px;
+        border-radius: 50%;
+        background: #fff;
+        position: absolute;
+        -webkit-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+      }
+
+      body.dark-mode .dark-toggle span {
+        left: 15px;
+        -webkit-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease;
+      }
+
+      .top-dark-mode-button .dark-toggle {
+        background: rgb(230, 230, 230);
+        border-color: rgb(230, 230, 230);
+        width: 35px;
+      }
+
+      /* Begin adding your dark mode styles here, like so: */
+
+      .dark-mode {
+        background: #06090f;
+      }
+
+      body.dark-mode p {
+        color: #c9c9c9;
+      }
+      body.dark-mode .h6,
+      body.dark-mode .h4 {
+        color: white;
+      }
+      body.dark-mode .container {
+        background: #0d1117;
+        border: solid 1px #30363d;
+      }
+      body.dark-mode nav {
+        background: #161b22;
+      }
+
+      body.dark-mode li {
+        color: #eeeeee;
+      }
+      body.dark-mode .navbar-toggler {
+        border: white 1px solid;
+        color: white !important;
+        background: #06090f;
+        padding: 1px 4px 1px 4px;
+        line-height: 0px;
+      }
+      body.dark-mode .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.7em;
+        color: white !important;
+        height: 1.1em;
+        vertical-align: middle;
+        content: "";
+        background: no-repeat center center;
+        background-size: 100% 100%;
+      }
+      body.dark-mode tr:nth-child(even) {
+        background: #06080e;
+        color: white;
+      }
+      body.dark-mode .loader-container {
+        background: #06090f;
+      }
+      body.dark-mode .h5 {
+        color: white;
+      }
+      body.dark-mode tr {
+        border: black !important;
+      }
+      body.dark-mode table {
+        border: #30363d solid 1.5px;
+        color: white;
+      }
+
+      table {
+        border: rgb(202, 202, 202) 1px solid;
+      }
+      th,
+      td {
+        text-align: center;
+      }
+      tr:nth-child(even) {
+        background-color: white;
+      }
+      p {
+        color: rgb(116, 116, 116);
+        text-align: justify;
+      }
+      .loader-container {
+        width: 100%;
+        height: 100vh;
+        background: white;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+      }
+
+      ul li {
+        list-style: none;
+        display: flex;
+        padding: 10px;
+        font-size: 18px;
+        color: rgb(158, 0, 32);
+      }
+      ul {
+        padding-inline-start: 0px;
+      }
+      .control-group {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+        height: 50px;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 15px;
+        border: none;
+        font-size: 20px;
+      }
+
+      .button {
+        width: 100px;
+        font-size: 20px;
+      }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: crimson;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+      th {
+        border: none;
+        background: #dc3545;
+      }
+
+      @media only screen and (max-width: 760px),
+        (min-device-width: 768px) and (max-device-width: 1024px) {
+        img {
+          width: 315px;
+        }
+        .top-dark-mode-button {
+          position: absolute;
+          top: 0px;
+          right: 80px;
+        }
+        .paste {
+          font-size: 14px;
+        }
+        .heading {
+          font-size: 24px;
+        }
+        .heading2 {
+          font-size: 18px;
+          margin-top: 5px;
+        }
+        .audio {
+          display: none;
+        }
+        .aud {
+          padding: 100px !important;
+        }
+        .h4 {
+          font-size: 20px;
+          text-align: justify;
+        }
+        .button {
+          width: 37px;
+          font-size: 18px;
+          border: none;
+
+          padding: 3px;
+        }
+        input {
+          height: 40px;
+        }
+        input:focus {
+          border: #dc3545 1px solid;
+        }
+      }
+    </style>
+  </head>
+  <body class="dark-mode">
+    {% include 'navbar.html' %}
+    <div class="container">
+      {% block content %} {% endblock %}
+
+      <footer class="text-center text-lg-start">
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div
+          class="text-center p-3 container"
+          style="background-color: rgba(0, 0, 0, 0.433); border-top: 0px"
+        >
+          © 2020 Copyright:
+          <a class="text-dark" href="https://lyounsi.netlify.app">Harami.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+
+    <script>
+      $(window).on("load", function () {
+        $(".loader-container").fadeOut(600);
+      });
+    </script>
+    <script>
+      /* Body */
+      const body = document.querySelector("body");
+
+      // Dark Mode Action
+      let darkMode = localStorage.getItem("darkMode");
+      const darkModeToggle = document.querySelector(".dark-mode-button");
+      const darkModeToggleFooter = document.querySelector(
+        "footer .dark-mode-button"
+      );
+
+      // Enable Dark Mode
+      const enableDarkMode = () => {
+        body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", "enabled");
+      };
+
+      // Disable Dark Mode
+      const disableDarkMode = () => {
+        body.classList.remove("dark-mode");
+        localStorage.setItem("darkMode", null);
+      };
+
+      if (darkMode == "enabled") {
+        enableDarkMode();
+      }
+
+      // Desktop Button
+      darkModeToggle.addEventListener("click", () => {
+        darkMode = localStorage.getItem("darkMode");
+        if (darkMode !== "enabled") {
+          enableDarkMode();
+        } else {
+          disableDarkMode();
+        }
+      });
+    </script>
+  </body>
+</html>

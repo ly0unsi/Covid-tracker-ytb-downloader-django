@@ -1,0 +1,38 @@
+{% extends 'master2.html' %} {% block content %} {% include 'status.html' %}
+<div style="color: black;" id="go" class="mb-4 mt-0">
+  heey
+</div>
+<h4>Global statictics</h4>
+
+<div class="d-flex mb-1">
+  <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+  <input class="form-control w-35"  type="text" id="search" placeholder="Search"
+    aria-label="Search">
+</div>
+<table class="mb-2" >
+  
+  <tr>
+    <thead>
+      <th style="color: rgb(56, 214, 146)">Country</th>
+      <th class="text-info">New confirmed</th>
+      <th class="text-warning">New deaths</th>
+      <th class="text-danger">Total deaths</th>
+      <th class="text-primary">New Recovered</th>
+      <th class="text-dark">Total recovered</th>
+    </thead>
+  </tr>
+<tbody>
+  {% for c in countries %}
+  <tr >
+    <td class="text-dark" style="font-weight: bold">  {{c.Country}} </td>
+    <td style="font-weight: normal;">  {{ c.NewConfirmed }}</td>
+    <td style="font-weight: normal;"> {{ c.NewDeaths }}</td>
+    <td style="font-weight: normal;">{{c.TotalDeaths}}</td>
+    <td style="font-weight: normal;">{{ c.NewRecovered }}</td>
+    <td style="font-weight: normal;">{{ c.TotalRecovered }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% endblock content %}

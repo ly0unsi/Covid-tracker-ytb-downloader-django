@@ -1,0 +1,143 @@
+{% extends 'master.html' %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="site-main pt-3 pt-sm-3 ">
+  <section class=" mb-2">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="h2 mt-1 mb-1 text-danger heading">Youtube Downloader</h2>
+        <h2 class="h6">Need to download a youtube video in mp3 format?</h2>
+        <p>
+          Mp3 Youtube is a free online youtube converter that can convert a
+          youtube video to an mp3 file.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section id="app" class=" mb-2">
+    <div class="row">
+      <article class="col-md-12 app-downloader">
+        <h3 class="h5 downloader-title" style="text-align: justify;">
+          Paste a url from a youtube video below to download it in mp3
+        </h3>
+        <div class="form-group">
+          <div class="input-group">
+            <form class="col-md-12 d-flex" style="padding-left: 0;padding-right: 0;" action="" method="post">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button style="border-top-right-radius: 15px;border-top-left-radius: 0px;border-bottom-right-radius: 15px;
+              border-bottom-left-radius: 0px;" type="submit" value="Download" class="btn btn-danger  button">
+                <i class="fa fa-reply"></i>
+              </button>
+          </form>
+            </div>
+            <!---->
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+  <div class="loader-container">
+    
+  </div>
+  {% if title %}
+  <div style="padding-left: 8px;" class="row d-flex ">
+      <div class="img-thumb col-md-4">
+          <img style="border: 2px solid #dc3545;" class="img-responsive rounded-lg" src="{{ thumb }}">
+      </div>
+      <div class="col-md-8 .d-sm-none ">
+          <h4 style="font-weight: bold;" class="text-danger heading2" >{{ title }}</h3>
+            <div class="d-none d-lg-block">
+          <ul class="d-flex ">
+              <li>Duration: <b>{{ duration }}s</b></li>
+              <li>Views: <b>{{ views }}</b></li>
+              <li>Likes: <b>{{ likes }}</b></li>
+              <li>Dislikes: <b>{{ dislikes }}</b</li>
+            </ul>
+          </div>
+      </div>
+  </div>
+      <div class="col-md-12 mt-2">
+              <table class="table  table-sm">
+                  <thead class="text-white">
+                    <tr>
+                      <th >Resolution</th>
+                      <th >Size</th>
+                      <th >Extension</th>
+                      <th ><i
+                        class=" fa fa-download"></i></th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    {% for stream in video_streams %}
+                    <tr>
+                        <td>{{ stream.resolution }}</td>
+                        <td>{{ stream.file_size }}</td>
+                        <td>{{ stream.extension }}</td>
+                        <td><a class="py-0 px-1 text-danger" href="{{ stream.video_url }}" style="text-decoration: none;font-size: 14px;"
+                              download="{{ title }}.{{ extension }}" target="_blank"><i
+                                class=" fa fa-download"></i></a></td>
+                    </tr>
+                {% endfor %}
+                  </tbody>
+                </table>
+              
+                
+                <table class="table mb-5  table-sm ">
+                    <thead class="text-white py-0 ">
+                    <tr>
+                        <th > <span class="audio "> Audio </span> "  <i class="fa fa-headphones v">  "</i></th>
+                        <th >Size</th>
+                        <th >Extension</th>
+                        <th ><i
+                          class=" fa fa-download"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody  >
+                    {% for stream in audio_streams %}
+                        <tr>
+                          <td>Audio</td>
+                            <td>{{ stream.file_size }}</td>
+                            <td>{{ stream.extension }}</td>
+                            <td ><a class="py-0 px-1 text-danger" href="{{ stream.video_url }}" style="text-decoration: none;font-size: 14px;"
+                                  download="{{ title }}.{{ extension }}" target="_blank|_parent"><i
+                                    class=" fa fa-download"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+      
+{% endif %}
+  
+
+
+
+
+
+
+
+
+  <section class=" home-text-content">
+    <div class="row">
+        <article class="col-md-6 mb-3">
+            <h4 class="h5"><i class="fa fa-fighter-jet"></i> Fast and easy to use</h4>
+            <p style="font-weight: normal;">There is no simpler and faster youtube converter: you just paste the video url link you want to download on the above field, and a few seconds later you get an mp3 in original quality.</p>
+        </article>
+        <article class="col-md-6">
+            <h4 class="h5">Compatible with over 1000 websites</h4>
+            <p style="font-weight: normal;">Our youtube mp3 converter is not only able to download videos from Youtube to mp3, it is compatible with the most popular websites: Facebook, Vimeo, Soundcloud, Instagram, etc... Just try it!</p>
+        </article>
+    </div>
+</section>
+  
+
+
+</div>
+  
+
+{% endblock content %}
